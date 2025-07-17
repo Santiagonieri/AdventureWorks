@@ -1,0 +1,15 @@
+-- Diccionario de datos: Tablas y columnas de AdventureWorksDW
+SELECT 
+    t.TABLE_NAME AS Tabla,
+    c.COLUMN_NAME AS Columna,
+    c.DATA_TYPE AS Tipo,
+    c.IS_NULLABLE AS Nulo
+FROM 
+    INFORMATION_SCHEMA.COLUMNS c
+    JOIN INFORMATION_SCHEMA.TABLES t
+        ON c.TABLE_NAME = t.TABLE_NAME AND c.TABLE_SCHEMA = t.TABLE_SCHEMA
+WHERE 
+    t.TABLE_TYPE = 'BASE TABLE'
+    AND t.TABLE_CATALOG = 'AdventureWorksDW2022'
+ORDER BY 
+    t.TABLE_NAME, c.ORDINAL_POSITION;
