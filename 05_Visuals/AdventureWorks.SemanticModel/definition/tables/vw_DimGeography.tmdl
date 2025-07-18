@@ -1,0 +1,97 @@
+table vw_DimGeography
+	lineageTag: 955d5612-9524-4467-bd00-cd11be9c3305
+
+	column GeographyKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8b00ae85-6d69-41dd-9805-1a95a3968566
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		sourceProviderType: nvarchar(30)
+		lineageTag: f5e131e8-02ef-44ce-89dd-dd06992e0a39
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateProvinceCode
+		dataType: string
+		sourceProviderType: nvarchar(3)
+		lineageTag: 4985aa51-ef93-488c-8289-7527cff6229e
+		summarizeBy: none
+		sourceColumn: StateProvinceCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateProvinceName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: eedf4621-ee16-4b66-957c-34413ba7fa25
+		summarizeBy: none
+		sourceColumn: StateProvinceName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryRegionCode
+		dataType: string
+		sourceProviderType: nvarchar(3)
+		lineageTag: 47ff6db9-8c56-4d54-ab38-120e275636a6
+		summarizeBy: none
+		sourceColumn: CountryRegionCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishCountryRegionName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 18640724-903c-49dc-8fc6-69b19e05f17b
+		summarizeBy: none
+		sourceColumn: EnglishCountryRegionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpanishCountryRegionName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 5f86b0bb-9727-40b9-b294-83d5c63dc082
+		summarizeBy: none
+		sourceColumn: SpanishCountryRegionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryGroup
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 6e3ba3c9-ff32-4d0c-b3a8-db0be7739776
+		summarizeBy: none
+		sourceColumn: SalesTerritoryGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryRegion
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: dd006147-cc16-45e4-9ae9-1cca9dc3a2df
+		summarizeBy: none
+		sourceColumn: SalesTerritoryRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_DimGeography = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+				    dbo_vw_DimGeography = Origen{[Schema="dbo",Item="vw_DimGeography"]}[Data]
+				in
+				    dbo_vw_DimGeography
+
+	annotation PBI_ResultType = Table
+

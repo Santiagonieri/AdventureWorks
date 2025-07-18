@@ -1,0 +1,128 @@
+table vw_DimPromotion
+	lineageTag: cf896a0b-8afe-4245-9586-5bde7162bdd7
+
+	column PromotionKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6173db3d-d8f0-47b1-b08e-70ec82da508b
+		summarizeBy: none
+		sourceColumn: PromotionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishPromotionName
+		dataType: string
+		sourceProviderType: nvarchar(255)
+		lineageTag: 1511f822-bb48-4f00-8752-7c5824b4d6e6
+		summarizeBy: none
+		sourceColumn: EnglishPromotionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpanishPromotionName
+		dataType: string
+		sourceProviderType: nvarchar(255)
+		lineageTag: af49bb0b-bea5-4546-acf8-78a7ff9ea4ce
+		summarizeBy: none
+		sourceColumn: SpanishPromotionName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountPct
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 688df867-d0fe-47d1-b3e3-ef2e788438af
+		summarizeBy: none
+		sourceColumn: DiscountPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EnglishPromotionType
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: a991c506-9b18-47ea-8949-d1958f06c0a2
+		summarizeBy: none
+		sourceColumn: EnglishPromotionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpanishPromotionType
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 626a355f-618a-40d4-b109-107887b74599
+		summarizeBy: none
+		sourceColumn: SpanishPromotionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishPromotionCategory
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: f8a031e4-5381-482f-abfe-0e3cf10650fd
+		summarizeBy: none
+		sourceColumn: EnglishPromotionCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpanishPromotionCategory
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 9835c9e0-634b-4246-b940-f45eae0b8e1e
+		summarizeBy: none
+		sourceColumn: SpanishPromotionCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1629addc-13dc-475a-b3cf-a69aae3f4b0d
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDate
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 77c4451c-a4b4-407b-b005-468f53462c53
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column MinQty
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 123a8b4e-e9e7-4a23-af37-82ac539184ce
+		summarizeBy: none
+		sourceColumn: MinQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaxQty
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 880670d8-ac0b-4b1d-8659-3dc9e7397c25
+		summarizeBy: none
+		sourceColumn: MaxQty
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_DimPromotion = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+				    dbo_vw_DimPromotion = Origen{[Schema="dbo",Item="vw_DimPromotion"]}[Data]
+				in
+				    dbo_vw_DimPromotion
+
+	annotation PBI_ResultType = Table
+

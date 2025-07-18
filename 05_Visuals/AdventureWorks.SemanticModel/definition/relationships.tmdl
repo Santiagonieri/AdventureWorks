@@ -1,0 +1,111 @@
+relationship 33fd016b-c550-53a7-c3ec-620ec678e899
+	fromColumn: vw_FactSales.PromotionKey
+	toColumn: vw_DimPromotion.PromotionKey
+
+relationship da3b304a-b872-252a-960c-0ecda65e86a9
+	fromColumn: vw_DimReseller.GeographyKey
+	toColumn: vw_DimGeography.GeographyKey
+
+relationship af5cbad4-0fae-9513-d79f-0db0dcc3bfb9
+	fromColumn: vw_FactSales.ProductKey
+	toColumn: vw_DimProduct.ProductKey
+
+relationship de194f7f-1ea4-fa5b-6e1a-7aae705e490d
+	fromColumn: vw_FactStockProduct.ProductKey
+	toColumn: vw_DimProduct.ProductKey
+
+relationship 29720ceb-d830-fefa-2b8b-b07fcfd1ba56
+	fromColumn: vw_DimCurrency.DateKey
+	toColumn: vw_DimCalendar.DateKey
+
+relationship 24e0a01a-1d96-a6d0-1a1b-ea7fc76ee910
+	fromColumn: vw_FactFinancial.DateKey
+	toColumn: vw_DimCalendar.DateKey
+
+relationship 911676df-38c5-d56c-4d25-a499c519abe3
+	fromColumn: vw_FactSalesQuotas.DateKey
+	toColumn: vw_DimCalendar.DateKey
+
+relationship cd03a82e-dcc8-6f53-d92b-4492820d8dec
+	fromColumn: vw_FactStockProduct.DateKey
+	toColumn: vw_DimCalendar.DateKey
+
+relationship 454bf5fd-e41b-2084-4057-f90c3c172aa4
+	fromColumn: vw_FactSales.ResellerKey
+	toColumn: vw_DimReseller.ResellerKey
+
+relationship 70e4886f-e7a6-b33a-c2da-cd2ce132634b
+	isActive: false
+	fromColumn: vw_FactSales.DueDateKey
+	toColumn: vw_DimCalendar.DateKey
+
+relationship 0672b446-6163-4f44-ce5b-c2485f40689d
+	fromColumn: vw_FactSales.OrderDateKey
+	toColumn: vw_DimCalendar.DateKey
+
+relationship e8aa4471-10db-1456-33f2-bd41885fae2d
+	isActive: false
+	fromColumn: vw_FactSales.ShipDateKey
+	toColumn: vw_DimCalendar.DateKey
+
+relationship 86d0e5ca-722c-43c9-8933-4dc607e12ab2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vw_DimProduct.StartDate
+	toColumn: LocalDateTable_9e4336bf-31ba-402c-a113-7dbaaea8b371.Date
+
+relationship 90fdbce1-ab0d-4139-9d8a-474275039eff
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vw_DimProduct.EndDate
+	toColumn: LocalDateTable_f9e32293-7301-4663-ada8-1a2e0e50e281.Date
+
+relationship 00c91d3c-92ca-4316-bcfc-8c3f66055cb5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vw_DimCalendar.Date
+	toColumn: LocalDateTable_93cd43ec-e334-4c4f-8057-9052f9e468b7.Date
+
+relationship 65af9195-97ea-48a7-b024-40e46a5c4c3f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vw_DimCustomer.BirthDate
+	toColumn: LocalDateTable_f7f23eb3-12ca-4d08-84f0-1d1fbee02194.Date
+
+relationship ffdc5469-71d7-4286-b707-a2884c7d976a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vw_DimEmployee.HireDate
+	toColumn: LocalDateTable_e5deedf4-28c4-42d2-ad71-aa32ebf6ea7d.Date
+
+relationship fb494222-aedd-4e48-a434-b21539f60077
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vw_DimEmployee.BirthDate
+	toColumn: LocalDateTable_b9b8f040-fcd3-4be4-bd59-79f8eff2942a.Date
+
+relationship e80ff0c6-4f5c-4971-9966-27e384ba4fec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vw_DimEmployee.StartDate
+	toColumn: LocalDateTable_d047f3e4-3b7f-4571-9065-fccf29ecd134.Date
+
+relationship 3729a8bd-686e-46da-a0a5-7f1dedc0e725
+	joinOnDateBehavior: datePartOnly
+	fromColumn: vw_DimEmployee.EndDate
+	toColumn: LocalDateTable_dbdae79d-aabc-48f3-be3c-0e15d2044943.Date
+
+relationship AutoDetected_d54ad6f9-621c-4100-899f-2cb53de1a535
+	fromColumn: vw_DimCustomer.GeographyKey
+	toColumn: vw_DimGeography.GeographyKey
+
+relationship AutoDetected_2dbd9c3c-ff57-4da6-a35c-8dcd19c15907
+	fromColumn: vw_FactFinancial.AccountKey
+	toColumn: vw_DimAccount.AccountKey
+
+relationship AutoDetected_4e669d4b-2023-467b-b02a-fb2aad905423
+	isActive: false
+	fromColumn: vw_FactSales.CustomerKey
+	toColumn: vw_DimCustomer.CustomerKey
+
+relationship AutoDetected_1a9f4fbc-1b76-4223-89b6-0058cf53877a
+	fromColumn: vw_FactSales.EmployeeKey
+	toColumn: vw_DimEmployee.EmployeeKey
+
+relationship AutoDetected_d6a3f978-5487-4df7-9758-fb2d5adf8009
+	fromColumn: vw_FactSalesQuotas.EmployeeKey
+	toColumn: vw_DimEmployee.EmployeeKey
+

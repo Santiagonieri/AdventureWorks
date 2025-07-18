@@ -1,0 +1,82 @@
+table vw_FactStockProduct
+	lineageTag: e74dbe19-d8f6-4457-bb1c-d81cae6eaea4
+
+	column ProductKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f4ecac21-f0ea-4981-bdfd-d15bb2de816a
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 0159cd95-010d-4fdb-8b54-055682795458
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitCost
+		dataType: decimal
+		isNullable: false
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		sourceProviderType: money
+		lineageTag: bf762edf-b243-4ed3-b3bf-fd581ffef62a
+		summarizeBy: sum
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+	column UnitsIn
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a406ada6-b923-41d2-8a83-bf487cc90a5d
+		summarizeBy: sum
+		sourceColumn: UnitsIn
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitsOut
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f15199ed-b8bc-4d9e-b7fa-60d7aa8dccd3
+		summarizeBy: sum
+		sourceColumn: UnitsOut
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitsBalance
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 0feeaad1-7f17-434a-903f-39dc9dfabbdc
+		summarizeBy: sum
+		sourceColumn: UnitsBalance
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_FactStockProduct = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+				    dbo_vw_FactStockProduct = Origen{[Schema="dbo",Item="vw_FactStockProduct"]}[Data]
+				in
+				    dbo_vw_FactStockProduct
+
+	annotation PBI_ResultType = Table
+

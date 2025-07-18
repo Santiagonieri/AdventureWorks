@@ -1,0 +1,209 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "591f9128990e28b9c84c",
+  "position": {
+    "x": 188.85245901639345,
+    "y": 106.82563338301044,
+    "z": 0,
+    "height": 278.50968703427725,
+    "width": 860.32786885245912
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_DimCalendar"
+                    }
+                  },
+                  "Property": "FiscalYear"
+                }
+              },
+              "queryRef": "vw_DimCalendar.FiscalYear",
+              "nativeQueryRef": "FiscalYear",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_DimAccount"
+                    }
+                  },
+                  "Property": "AccountType"
+                }
+              },
+              "queryRef": "vw_DimAccount.AccountType",
+              "nativeQueryRef": "AccountType",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_DimAccount"
+                    }
+                  },
+                  "Property": "AccountDescription"
+                }
+              },
+              "queryRef": "vw_DimAccount.AccountDescription",
+              "nativeQueryRef": "AccountDescription",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "vw_FactFinancial"
+                        }
+                      },
+                      "Property": "Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(vw_FactFinancial.Amount)",
+              "nativeQueryRef": "Suma de Amount"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "vw_DimAccount.AccountType"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_DimAccount"
+                    }
+                  },
+                  "Property": "AccountType"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "vw_DimAccount.AccountDescription"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Flow'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8fa8715c7071f46e2de2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_DimAccount"
+              }
+            },
+            "Property": "AccountDescription"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1def61298653c06ce73b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_DimAccount"
+              }
+            },
+            "Property": "AccountType"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9a63946403e599f18d29",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "vw_FactFinancial"
+                  }
+                },
+                "Property": "Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c1320909361c1c3699c1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_DimCalendar"
+              }
+            },
+            "Property": "FiscalYear"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

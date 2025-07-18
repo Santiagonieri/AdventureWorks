@@ -1,0 +1,86 @@
+table vw_FactFinancial
+	lineageTag: ce514a54-0064-4c7a-a2a2-639e5c91bf7a
+
+	column FinanceKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5ef72717-9108-4ef3-99fd-53f599e5c8c3
+		summarizeBy: count
+		sourceColumn: FinanceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 3eba3c79-ff42-45fc-ba77-345737bacd6e
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrganizationName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 5955d9da-57d1-4227-a90e-db33a17c9e72
+		summarizeBy: none
+		sourceColumn: OrganizationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentGroupName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: c11ad762-2a0a-4576-84b6-302b9b8c29a5
+		summarizeBy: none
+		sourceColumn: DepartmentGroupName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScenarioName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: ced97a1c-93c8-4286-8e7f-e113fd0e9e67
+		summarizeBy: none
+		sourceColumn: ScenarioName
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 12669dcc-9c63-47c8-aef1-d48a156d766f
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: double
+		isNullable: false
+		sourceProviderType: float
+		lineageTag: eece0ab5-6f68-44df-a6be-bb574a016bae
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition vw_FactFinancial = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+				    dbo_vw_FactFinancial = Origen{[Schema="dbo",Item="vw_FactFinancial"]}[Data]
+				in
+				    dbo_vw_FactFinancial
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,180 @@
+table vw_DimEmployee
+	lineageTag: 8a6cb7cd-a1c9-4155-ba2a-223fa4a41a85
+
+	column EmployeeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c34f23c7-6717-4c99-adaa-958d4ce1de8e
+		summarizeBy: none
+		sourceColumn: EmployeeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentEmployeeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d720b2a3-f14a-466f-b464-a5061b95e83c
+		summarizeBy: count
+		sourceColumn: ParentEmployeeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryCountry
+		dataType: string
+		lineageTag: 0fff5226-8504-4b76-96b5-7751cf6c8237
+		summarizeBy: none
+		sourceColumn: SalesTerritoryCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryGroup
+		dataType: string
+		lineageTag: 3ea129ea-6a91-4554-886c-9852159c7d72
+		summarizeBy: none
+		sourceColumn: SalesTerritoryGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryRegion
+		dataType: string
+		lineageTag: 411ede2a-e072-4957-ae5e-e33b5f807355
+		summarizeBy: none
+		sourceColumn: SalesTerritoryRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: c4fc8467-73dc-45a5-85e1-3177eee6cb6f
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column HireDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9e083bbe-e08c-411f-8535-f1baefac21dd
+		summarizeBy: none
+		sourceColumn: HireDate
+
+		variation Variación
+			isDefault
+			relationship: ffdc5469-71d7-4286-b707-a2884c7d976a
+			defaultHierarchy: LocalDateTable_e5deedf4-28c4-42d2-ad71-aa32ebf6ea7d.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BirthDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5a9c4bd1-e473-4428-8a0a-9695de71d75d
+		summarizeBy: none
+		sourceColumn: BirthDate
+
+		variation Variación
+			isDefault
+			relationship: fb494222-aedd-4e48-a434-b21539f60077
+			defaultHierarchy: LocalDateTable_b9b8f040-fcd3-4be4-bd59-79f8eff2942a.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column YearOld
+		dataType: int64
+		formatString: 0
+		lineageTag: c3f66ac6-459e-4345-b733-954dadc3f3f5
+		summarizeBy: sum
+		sourceColumn: YearOld
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActiveYears
+		dataType: int64
+		formatString: 0
+		lineageTag: b4d0a2d2-0982-41fb-bc98-c79667c22ff9
+		summarizeBy: sum
+		sourceColumn: ActiveYears
+
+		annotation SummarizationSetBy = Automatic
+
+	column MaritalStatus
+		dataType: string
+		lineageTag: de8b5f3a-c1da-43d1-8c82-b057e114a609
+		summarizeBy: none
+		sourceColumn: MaritalStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 76b899d7-6389-4307-b401-4bf4718a1d6e
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentName
+		dataType: string
+		lineageTag: f214b14e-227e-4910-8869-10402c6a9a21
+		summarizeBy: none
+		sourceColumn: DepartmentName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2437c0d4-b7ef-44e9-85a1-097bf241110b
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		variation Variación
+			isDefault
+			relationship: e80ff0c6-4f5c-4971-9966-27e384ba4fec
+			defaultHierarchy: LocalDateTable_d047f3e4-3b7f-4571-9065-fccf29ecd134.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EndDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 032c6137-a180-4885-b942-eb46a5c48401
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		variation Variación
+			isDefault
+			relationship: 3729a8bd-686e-46da-a0a5-7f1dedc0e725
+			defaultHierarchy: LocalDateTable_dbdae79d-aabc-48f3-be3c-0e15d2044943.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Status
+		dataType: string
+		lineageTag: 014e1ff6-c81e-46c1-8095-5e9a47727051
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_DimEmployee = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+				    dbo_vw_DimEmployee = Origen{[Schema="dbo",Item="vw_DimEmployee"]}[Data]
+				in
+				    dbo_vw_DimEmployee
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

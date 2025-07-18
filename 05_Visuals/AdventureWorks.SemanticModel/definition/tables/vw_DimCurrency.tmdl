@@ -1,0 +1,78 @@
+table vw_DimCurrency
+	lineageTag: 41368166-5c94-4cfb-a985-9da16a832c5f
+
+	column CurrencyKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a9fb8b22-29ff-4e92-a5a3-e0c28d7c5b1f
+		summarizeBy: count
+		sourceColumn: CurrencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 94ecaa2b-1eca-4ab8-8855-4768ed0523cf
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AverageRate
+		dataType: double
+		isNullable: false
+		sourceProviderType: float
+		lineageTag: 8a366280-8d5c-4ef5-b390-49750e2d2f42
+		summarizeBy: sum
+		sourceColumn: AverageRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EndOfDayRate
+		dataType: double
+		isNullable: false
+		sourceProviderType: float
+		lineageTag: 6ba14812-fe36-4e90-ba23-b4569d21ffd2
+		summarizeBy: sum
+		sourceColumn: EndOfDayRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CurrencyAlternateKey
+		dataType: string
+		sourceProviderType: nchar
+		lineageTag: aad1c7e7-f205-48ed-bbb3-dcdcafbea9c5
+		summarizeBy: none
+		sourceColumn: CurrencyAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyName
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: e77d734e-be48-4eba-a8e8-07154af805c0
+		summarizeBy: none
+		sourceColumn: CurrencyName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_DimCurrency = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+				    dbo_vw_DimCurrency = Origen{[Schema="dbo",Item="vw_DimCurrency"]}[Data]
+				in
+				    dbo_vw_DimCurrency
+
+	annotation PBI_ResultType = Table
+

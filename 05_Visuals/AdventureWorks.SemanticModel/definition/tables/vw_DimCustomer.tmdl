@@ -1,0 +1,85 @@
+table vw_DimCustomer
+	lineageTag: 70064b47-93a0-4959-a3f0-97a8a8ba668b
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 94abcf0c-9b62-4fed-b283-330865ff1695
+		summarizeBy: count
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f15f096-57e2-48f0-b035-2b3b3156de6e
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column BirthDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f66238fd-7cda-4ca3-a507-e840ef3098d6
+		summarizeBy: none
+		sourceColumn: BirthDate
+
+		variation Variación
+			isDefault
+			relationship: 65af9195-97ea-48a7-b024-40e46a5c4c3f
+			defaultHierarchy: LocalDateTable_f7f23eb3-12ca-4d08-84f0-1d1fbee02194.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MaritalStatus
+		dataType: string
+		lineageTag: 9e28adc4-aed1-4c86-904a-01527b1f9e91
+		summarizeBy: none
+		sourceColumn: MaritalStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: a072463c-1922-44fa-ab93-7367f9efd7e1
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearlyIncome
+		dataType: decimal
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: 05106d5e-62b6-4b75-91ff-f35119f7b0ad
+		summarizeBy: sum
+		sourceColumn: YearlyIncome
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+	column DateFirstPurchase
+		dataType: string
+		lineageTag: 4a6f163c-1abe-4325-8be9-25eee6516121
+		summarizeBy: none
+		sourceColumn: DateFirstPurchase
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_DimCustomer = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+				    dbo_vw_DimCustomer = Origen{[Schema="dbo",Item="vw_DimCustomer"]}[Data]
+				in
+				    dbo_vw_DimCustomer
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

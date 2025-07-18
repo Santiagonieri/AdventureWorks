@@ -1,0 +1,1370 @@
+createOrReplace
+
+	model Model
+		culture: es-AR
+		defaultPowerBIDataSourceVersion: powerBI_V3
+		sourceQueryCulture: es-AR
+		dataAccessOptions
+			legacyRedirects
+			returnErrorValuesAsNull
+
+		table vw_DimGeography
+			lineageTag: 955d5612-9524-4467-bd00-cd11be9c3305
+
+			column GeographyKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 8b00ae85-6d69-41dd-9805-1a95a3968566
+				summarizeBy: count
+				sourceColumn: GeographyKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column City
+				dataType: string
+				sourceProviderType: nvarchar(30)
+				lineageTag: f5e131e8-02ef-44ce-89dd-dd06992e0a39
+				summarizeBy: none
+				sourceColumn: City
+
+				annotation SummarizationSetBy = Automatic
+
+			column StateProvinceCode
+				dataType: string
+				sourceProviderType: nvarchar(3)
+				lineageTag: 4985aa51-ef93-488c-8289-7527cff6229e
+				summarizeBy: none
+				sourceColumn: StateProvinceCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column StateProvinceName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: eedf4621-ee16-4b66-957c-34413ba7fa25
+				summarizeBy: none
+				sourceColumn: StateProvinceName
+
+				annotation SummarizationSetBy = Automatic
+
+			column CountryRegionCode
+				dataType: string
+				sourceProviderType: nvarchar(3)
+				lineageTag: 47ff6db9-8c56-4d54-ab38-120e275636a6
+				summarizeBy: none
+				sourceColumn: CountryRegionCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column EnglishCountryRegionName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 18640724-903c-49dc-8fc6-69b19e05f17b
+				summarizeBy: none
+				sourceColumn: EnglishCountryRegionName
+
+				annotation SummarizationSetBy = Automatic
+
+			column SpanishCountryRegionName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 5f86b0bb-9727-40b9-b294-83d5c63dc082
+				summarizeBy: none
+				sourceColumn: SpanishCountryRegionName
+
+				annotation SummarizationSetBy = Automatic
+
+			column SalesTerritoryGroup
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 6e3ba3c9-ff32-4d0c-b3a8-db0be7739776
+				summarizeBy: none
+				sourceColumn: SalesTerritoryGroup
+
+				annotation SummarizationSetBy = Automatic
+
+			column SalesTerritoryRegion
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: dd006147-cc16-45e4-9ae9-1cca9dc3a2df
+				summarizeBy: none
+				sourceColumn: SalesTerritoryRegion
+
+				annotation SummarizationSetBy = Automatic
+
+			partition vw_DimGeography = m
+				mode: Import
+				source =
+						let
+						    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+						    dbo_vw_DimGeography = Origen{[Schema="dbo",Item="vw_DimGeography"]}[Data]
+						in
+						    dbo_vw_DimGeography
+
+			annotation PBI_ResultType = Table
+
+		table vw_DimProduct
+			lineageTag: e6e84dab-71fc-4ec8-a193-3a9ead1a8a40
+
+			column ProductKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 632e891f-81cb-4894-a98e-1e52a1f0331f
+				summarizeBy: count
+				sourceColumn: ProductKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column SpanishProductSubcategoryName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 27e3eeac-ffed-4cc1-abb2-71bf6ffa66d7
+				summarizeBy: none
+				sourceColumn: SpanishProductSubcategoryName
+
+				annotation SummarizationSetBy = Automatic
+
+			column EnglishProductSubcategoryName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 0efabbd9-7da6-4f18-a97f-84d2e9d2a0a7
+				summarizeBy: none
+				sourceColumn: EnglishProductSubcategoryName
+
+				annotation SummarizationSetBy = Automatic
+
+			column SpanishProductCategoryName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: cad9d515-d610-494c-a1c2-40378fb6e145
+				summarizeBy: none
+				sourceColumn: SpanishProductCategoryName
+
+				annotation SummarizationSetBy = Automatic
+
+			column EnglishProductCategoryName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 96b7c239-1f9f-46cd-bcc8-a1f59f1638c0
+				summarizeBy: none
+				sourceColumn: EnglishProductCategoryName
+
+				annotation SummarizationSetBy = Automatic
+
+			column EnglishProductName
+				dataType: string
+				isNullable: false
+				sourceProviderType: nvarchar(50)
+				lineageTag: 7020dbe7-cd1b-4fd1-91ba-8d4fc6160d07
+				summarizeBy: none
+				sourceColumn: EnglishProductName
+
+				annotation SummarizationSetBy = Automatic
+
+			column SpanishProductName
+				dataType: string
+				isNullable: false
+				sourceProviderType: nvarchar(50)
+				lineageTag: 48068038-0e10-4c97-bbd4-dc8028425a7a
+				summarizeBy: none
+				sourceColumn: SpanishProductName
+
+				annotation SummarizationSetBy = Automatic
+
+			column FinishedGoodsFlag
+				dataType: boolean
+				isNullable: false
+				formatString: """TRUE"";""TRUE"";""FALSE"""
+				sourceProviderType: bit
+				lineageTag: edb9f436-af4c-4048-910f-9e38ffd2a086
+				summarizeBy: none
+				sourceColumn: FinishedGoodsFlag
+
+				annotation SummarizationSetBy = Automatic
+
+			column Color
+				dataType: string
+				isNullable: false
+				sourceProviderType: nvarchar(15)
+				lineageTag: 7bdc6635-c731-4cc3-a411-1c0936604d91
+				summarizeBy: none
+				sourceColumn: Color
+
+				annotation SummarizationSetBy = Automatic
+
+			column SafetyStockLevel
+				dataType: int64
+				formatString: 0
+				sourceProviderType: smallint
+				lineageTag: ddc5bcd8-e901-4e0e-b610-ed0fb2938cb4
+				summarizeBy: sum
+				sourceColumn: SafetyStockLevel
+
+				annotation SummarizationSetBy = Automatic
+
+			column ReorderPoint
+				dataType: int64
+				formatString: 0
+				sourceProviderType: smallint
+				lineageTag: fc3a8549-d48c-410e-92ca-7656d4573d53
+				summarizeBy: sum
+				sourceColumn: ReorderPoint
+
+				annotation SummarizationSetBy = Automatic
+
+			column ListPrice
+				dataType: decimal
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: 0f817891-3f05-44d2-b5c0-881f65519005
+				summarizeBy: sum
+				sourceColumn: ListPrice
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			column DealerPrice
+				dataType: decimal
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: 4f1f0c5c-3f0a-4f4a-a389-4cdb8a0c2b93
+				summarizeBy: sum
+				sourceColumn: DealerPrice
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			column StandardCost
+				dataType: decimal
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: e43d9012-6071-4f3a-a1cf-a059456317af
+				summarizeBy: sum
+				sourceColumn: StandardCost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			column SizeUnitMeasureCode
+				dataType: string
+				sourceProviderType: nvarchar(3)
+				lineageTag: b9ab6210-bdd2-406d-96a5-211213bda25d
+				summarizeBy: none
+				sourceColumn: SizeUnitMeasureCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column Size
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 14df1886-b851-45bc-92b5-72dfd8e326b0
+				summarizeBy: none
+				sourceColumn: Size
+
+				annotation SummarizationSetBy = Automatic
+
+			column SizeRange
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: a358fa3d-e117-496d-9a1c-ddd3668b627a
+				summarizeBy: none
+				sourceColumn: SizeRange
+
+				annotation SummarizationSetBy = Automatic
+
+			column WeightUnitMeasureCode
+				dataType: string
+				sourceProviderType: nvarchar(3)
+				lineageTag: 1b42ceec-50df-42f2-bed4-0f3c9c9ccca2
+				summarizeBy: none
+				sourceColumn: WeightUnitMeasureCode
+
+				annotation SummarizationSetBy = Automatic
+
+			column Weight
+				dataType: string
+				sourceProviderType: varchar(10)
+				lineageTag: 416b51d6-102b-4fe3-9365-9578b88d7709
+				summarizeBy: none
+				sourceColumn: Weight
+
+				annotation SummarizationSetBy = Automatic
+
+			column DaysToManufacture
+				dataType: int64
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 39f1b992-afcc-4919-a064-46b649a8b408
+				summarizeBy: sum
+				sourceColumn: DaysToManufacture
+
+				annotation SummarizationSetBy = Automatic
+
+			column ModelName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 3adb97d7-3b0f-48fa-9f2d-6cfadb780336
+				summarizeBy: none
+				sourceColumn: ModelName
+
+				annotation SummarizationSetBy = Automatic
+
+			column EnglishDescription
+				dataType: string
+				sourceProviderType: nvarchar(400)
+				lineageTag: 87615b0a-5007-442b-96dd-731b4b863fab
+				summarizeBy: none
+				sourceColumn: EnglishDescription
+
+				annotation SummarizationSetBy = Automatic
+
+			column StartDate
+				dataType: dateTime
+				formatString: Long Date
+				sourceProviderType: date
+				lineageTag: 4a25c81a-e013-4f93-9d45-821356e65b5a
+				summarizeBy: none
+				sourceColumn: StartDate
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column EndDate
+				dataType: dateTime
+				formatString: Long Date
+				sourceProviderType: date
+				lineageTag: cc707b41-be43-4c3c-ad30-a6d13a35e73d
+				summarizeBy: none
+				sourceColumn: EndDate
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column Status
+				dataType: string
+				sourceProviderType: nvarchar(7)
+				lineageTag: 3db95c87-9961-4198-abce-4ea6bb0150c3
+				summarizeBy: none
+				sourceColumn: Status
+
+				annotation SummarizationSetBy = Automatic
+
+			partition vw_DimProduct = m
+				mode: Import
+				source =
+						let
+						    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+						    dbo_vw_DimProduct = Origen{[Schema="dbo",Item="vw_DimProduct"]}[Data]
+						in
+						    dbo_vw_DimProduct
+
+			annotation PBI_ResultType = Table
+
+		table vw_DimCalendar
+			lineageTag: ca4424fc-e196-46be-a5e3-9809c2c56bf4
+
+			column DateKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: e9f6bd2f-9013-414e-b9da-2def75506902
+				summarizeBy: count
+				sourceColumn: DateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column Date
+				dataType: dateTime
+				isNullable: false
+				formatString: Long Date
+				sourceProviderType: date
+				lineageTag: 623424e2-c4ed-44fc-ba7a-939b124c5b65
+				summarizeBy: none
+				sourceColumn: Date
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column DayNumberOfWeek
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: tinyint
+				lineageTag: c7f67db5-d43e-40dc-8da0-436e86bf617c
+				summarizeBy: sum
+				sourceColumn: DayNumberOfWeek
+
+				annotation SummarizationSetBy = Automatic
+
+			column EnglishDayNameOfWeek
+				dataType: string
+				isNullable: false
+				sourceProviderType: nvarchar(10)
+				lineageTag: 231d4880-45f5-4849-acb1-0cf5e0803678
+				summarizeBy: none
+				sourceColumn: EnglishDayNameOfWeek
+
+				annotation SummarizationSetBy = Automatic
+
+			column SpanishDayNameOfWeek
+				dataType: string
+				isNullable: false
+				sourceProviderType: nvarchar(10)
+				lineageTag: 5fd1a45a-7a3c-4d26-8043-0545d6502244
+				summarizeBy: none
+				sourceColumn: SpanishDayNameOfWeek
+
+				annotation SummarizationSetBy = Automatic
+
+			column DayNumberOfMonth
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: tinyint
+				lineageTag: d90601c8-5fcb-4bf0-bc49-4ed66cf65694
+				summarizeBy: sum
+				sourceColumn: DayNumberOfMonth
+
+				annotation SummarizationSetBy = Automatic
+
+			column DayNumberOfYear
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: smallint
+				lineageTag: fc24b8b9-0af6-4165-ad42-bbae30234a86
+				summarizeBy: sum
+				sourceColumn: DayNumberOfYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column WeekNumberOfYear
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: tinyint
+				lineageTag: 01a3e257-66a7-48ad-9782-e5b8fd516920
+				summarizeBy: sum
+				sourceColumn: WeekNumberOfYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column EnglishMonthName
+				dataType: string
+				isNullable: false
+				sourceProviderType: nvarchar(10)
+				lineageTag: 0a47a833-841c-446e-a5a2-29a63c89465a
+				summarizeBy: none
+				sourceColumn: EnglishMonthName
+
+				annotation SummarizationSetBy = Automatic
+
+			column SpanishMonthName
+				dataType: string
+				isNullable: false
+				sourceProviderType: nvarchar(10)
+				lineageTag: 65db4753-b74e-40cc-9a76-798479df3a36
+				summarizeBy: none
+				sourceColumn: SpanishMonthName
+
+				annotation SummarizationSetBy = Automatic
+
+			column MonthNumberOfYear
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: tinyint
+				lineageTag: 69e48fd6-fdef-45da-bdef-8ad8a4ea145c
+				summarizeBy: sum
+				sourceColumn: MonthNumberOfYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column CalendarQuarter
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: tinyint
+				lineageTag: 2f506c2a-5dda-4d91-93f4-ef554b43c4a8
+				summarizeBy: sum
+				sourceColumn: CalendarQuarter
+
+				annotation SummarizationSetBy = Automatic
+
+			column CalendarYear
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: smallint
+				lineageTag: 99ec2297-9ff2-4422-98a5-55e59b304d44
+				summarizeBy: sum
+				sourceColumn: CalendarYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column CalendarSemester
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: tinyint
+				lineageTag: b110b736-5b30-4395-96e1-f928fd3797e2
+				summarizeBy: sum
+				sourceColumn: CalendarSemester
+
+				annotation SummarizationSetBy = Automatic
+
+			column FiscalQuarter
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: tinyint
+				lineageTag: 385d0cb9-e470-4f27-b731-5fde6b4f18fe
+				summarizeBy: sum
+				sourceColumn: FiscalQuarter
+
+				annotation SummarizationSetBy = Automatic
+
+			column FiscalYear
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: smallint
+				lineageTag: 47eac7d4-2b33-4a10-a777-538604cabf02
+				summarizeBy: sum
+				sourceColumn: FiscalYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column FiscalSemester
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: tinyint
+				lineageTag: 413e2991-df49-431f-9e72-3ce850cf0307
+				summarizeBy: sum
+				sourceColumn: FiscalSemester
+
+				annotation SummarizationSetBy = Automatic
+
+			partition vw_DimCalendar = m
+				mode: import
+				source =
+						let
+						    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+						    dbo_vw_DimCalendar = Origen{[Schema="dbo",Item="vw_DimCalendar"]}[Data]
+						in
+						    dbo_vw_DimCalendar
+
+			annotation PBI_ResultType = Table
+
+		table vw_DimCurrency
+			lineageTag: 41368166-5c94-4cfb-a985-9da16a832c5f
+
+			column CurrencyKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: a9fb8b22-29ff-4e92-a5a3-e0c28d7c5b1f
+				summarizeBy: count
+				sourceColumn: CurrencyKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column DateKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 94ecaa2b-1eca-4ab8-8855-4768ed0523cf
+				summarizeBy: count
+				sourceColumn: DateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column AverageRate
+				dataType: double
+				isNullable: false
+				sourceProviderType: float
+				lineageTag: 8a366280-8d5c-4ef5-b390-49750e2d2f42
+				summarizeBy: sum
+				sourceColumn: AverageRate
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column EndOfDayRate
+				dataType: double
+				isNullable: false
+				sourceProviderType: float
+				lineageTag: 6ba14812-fe36-4e90-ba23-b4569d21ffd2
+				summarizeBy: sum
+				sourceColumn: EndOfDayRate
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column CurrencyAlternateKey
+				dataType: string
+				sourceProviderType: nchar
+				lineageTag: aad1c7e7-f205-48ed-bbb3-dcdcafbea9c5
+				summarizeBy: none
+				sourceColumn: CurrencyAlternateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column CurrencyName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: e77d734e-be48-4eba-a8e8-07154af805c0
+				summarizeBy: none
+				sourceColumn: CurrencyName
+
+				annotation SummarizationSetBy = Automatic
+
+			partition vw_DimCurrency = m
+				mode: Import
+				source =
+						let
+						    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+						    dbo_vw_DimCurrency = Origen{[Schema="dbo",Item="vw_DimCurrency"]}[Data]
+						in
+						    dbo_vw_DimCurrency
+
+			annotation PBI_ResultType = Table
+
+		table vw_DimPromotion
+			lineageTag: cf896a0b-8afe-4245-9586-5bde7162bdd7
+
+			column PromotionKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 6173db3d-d8f0-47b1-b08e-70ec82da508b
+				summarizeBy: none
+				sourceColumn: PromotionKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column EnglishPromotionName
+				dataType: string
+				sourceProviderType: nvarchar(255)
+				lineageTag: 1511f822-bb48-4f00-8752-7c5824b4d6e6
+				summarizeBy: none
+				sourceColumn: EnglishPromotionName
+
+				annotation SummarizationSetBy = Automatic
+
+			column SpanishPromotionName
+				dataType: string
+				sourceProviderType: nvarchar(255)
+				lineageTag: af49bb0b-bea5-4546-acf8-78a7ff9ea4ce
+				summarizeBy: none
+				sourceColumn: SpanishPromotionName
+
+				annotation SummarizationSetBy = Automatic
+
+			column DiscountPct
+				dataType: double
+				sourceProviderType: float
+				lineageTag: 688df867-d0fe-47d1-b3e3-ef2e788438af
+				summarizeBy: none
+				sourceColumn: DiscountPct
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column EnglishPromotionType
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: a991c506-9b18-47ea-8949-d1958f06c0a2
+				summarizeBy: none
+				sourceColumn: EnglishPromotionType
+
+				annotation SummarizationSetBy = Automatic
+
+			column SpanishPromotionType
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 626a355f-618a-40d4-b109-107887b74599
+				summarizeBy: none
+				sourceColumn: SpanishPromotionType
+
+				annotation SummarizationSetBy = Automatic
+
+			column EnglishPromotionCategory
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: f8a031e4-5381-482f-abfe-0e3cf10650fd
+				summarizeBy: none
+				sourceColumn: EnglishPromotionCategory
+
+				annotation SummarizationSetBy = Automatic
+
+			column SpanishPromotionCategory
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 9835c9e0-634b-4246-b940-f45eae0b8e1e
+				summarizeBy: none
+				sourceColumn: SpanishPromotionCategory
+
+				annotation SummarizationSetBy = Automatic
+
+			column StartDate
+				dataType: string
+				sourceProviderType: varchar(8000)
+				lineageTag: 1629addc-13dc-475a-b3cf-a69aae3f4b0d
+				summarizeBy: none
+				sourceColumn: StartDate
+
+				annotation SummarizationSetBy = Automatic
+
+			column EndDate
+				dataType: string
+				sourceProviderType: varchar(8000)
+				lineageTag: 77c4451c-a4b4-407b-b005-468f53462c53
+				summarizeBy: none
+				sourceColumn: EndDate
+
+				annotation SummarizationSetBy = Automatic
+
+			column MinQty
+				dataType: int64
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 123a8b4e-e9e7-4a23-af37-82ac539184ce
+				summarizeBy: none
+				sourceColumn: MinQty
+
+				annotation SummarizationSetBy = Automatic
+
+			column MaxQty
+				dataType: int64
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 880670d8-ac0b-4b1d-8659-3dc9e7397c25
+				summarizeBy: none
+				sourceColumn: MaxQty
+
+				annotation SummarizationSetBy = Automatic
+
+			partition vw_DimPromotion = m
+				mode: Import
+				source =
+						let
+						    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+						    dbo_vw_DimPromotion = Origen{[Schema="dbo",Item="vw_DimPromotion"]}[Data]
+						in
+						    dbo_vw_DimPromotion
+
+			annotation PBI_ResultType = Table
+
+		table vw_DimReseller
+			lineageTag: 91f5a0cc-546b-4f19-8960-123dc5fab304
+
+			column ResellerKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 57e43656-26f9-475f-8698-ab38fffe8a6a
+				summarizeBy: count
+				sourceColumn: ResellerKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column GeographyKey
+				dataType: int64
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 752e4a01-c591-40f1-a308-fe33a3731640
+				summarizeBy: count
+				sourceColumn: GeographyKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column BusinessType
+				dataType: string
+				isNullable: false
+				sourceProviderType: varchar(20)
+				lineageTag: aae1ed1d-d299-4177-80c8-1d2012acabc7
+				summarizeBy: none
+				sourceColumn: BusinessType
+
+				annotation SummarizationSetBy = Automatic
+
+			column ResellerName
+				dataType: string
+				sourceProviderType: nvarchar(51)
+				lineageTag: 87c96e88-25b7-432a-b903-f58cb53f185e
+				summarizeBy: none
+				sourceColumn: ResellerName
+
+				annotation SummarizationSetBy = Automatic
+
+			column FirstOrderYear
+				dataType: int64
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: f24b9130-d2ab-434a-8ef3-97eda41dec75
+				summarizeBy: sum
+				sourceColumn: FirstOrderYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column LastOrderYear
+				dataType: int64
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: c64575a9-d53b-46f9-838d-60faf92abb17
+				summarizeBy: sum
+				sourceColumn: LastOrderYear
+
+				annotation SummarizationSetBy = Automatic
+
+			column ProductLine
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: b6223850-12d5-450f-ac77-57c36492f815
+				summarizeBy: none
+				sourceColumn: ProductLine
+
+				annotation SummarizationSetBy = Automatic
+
+			column OrderFrequency
+				dataType: string
+				sourceProviderType: char
+				lineageTag: 8020fc17-0b1a-4f2d-8a55-0d1206a8c405
+				summarizeBy: none
+				sourceColumn: OrderFrequency
+
+				annotation SummarizationSetBy = Automatic
+
+			column Revenue
+				dataType: string
+				isNullable: false
+				sourceProviderType: varchar(6)
+				lineageTag: bc925a42-6585-4921-9236-098148f21013
+				summarizeBy: none
+				sourceColumn: Revenue
+
+				annotation SummarizationSetBy = Automatic
+
+			partition vw_DimReseller = m
+				mode: Import
+				source =
+						let
+						    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+						    dbo_vw_DimReseller = Origen{[Schema="dbo",Item="vw_DimReseller"]}[Data]
+						in
+						    dbo_vw_DimReseller
+
+			annotation PBI_ResultType = Table
+
+		table vw_FactFinancial
+			lineageTag: ce514a54-0064-4c7a-a2a2-639e5c91bf7a
+
+			column FinanceKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 5ef72717-9108-4ef3-99fd-53f599e5c8c3
+				summarizeBy: count
+				sourceColumn: FinanceKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column DateKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 3eba3c79-ff42-45fc-ba77-345737bacd6e
+				summarizeBy: count
+				sourceColumn: DateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column OrganizationName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: 5955d9da-57d1-4227-a90e-db33a17c9e72
+				summarizeBy: none
+				sourceColumn: OrganizationName
+
+				annotation SummarizationSetBy = Automatic
+
+			column DepartmentGroupName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: c11ad762-2a0a-4576-84b6-302b9b8c29a5
+				summarizeBy: none
+				sourceColumn: DepartmentGroupName
+
+				annotation SummarizationSetBy = Automatic
+
+			column ScenarioName
+				dataType: string
+				sourceProviderType: nvarchar(50)
+				lineageTag: ced97a1c-93c8-4286-8e7f-e113fd0e9e67
+				summarizeBy: none
+				sourceColumn: ScenarioName
+
+				annotation SummarizationSetBy = Automatic
+
+			column AccountKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 12669dcc-9c63-47c8-aef1-d48a156d766f
+				summarizeBy: count
+				sourceColumn: AccountKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column Amount
+				dataType: double
+				isNullable: false
+				sourceProviderType: float
+				lineageTag: eece0ab5-6f68-44df-a6be-bb574a016bae
+				summarizeBy: sum
+				sourceColumn: Amount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			partition vw_FactFinancial = m
+				mode: Import
+				source =
+						let
+						    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+						    dbo_vw_FactFinancial = Origen{[Schema="dbo",Item="vw_FactFinancial"]}[Data]
+						in
+						    dbo_vw_FactFinancial
+
+			annotation PBI_ResultType = Table
+
+		table vw_FactSales
+			lineageTag: 15e67f69-6de0-487f-9743-cd05b31e2516
+
+			column ProductKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 4e3b8427-22c1-4350-a0da-41aaa8fd75d7
+				summarizeBy: count
+				sourceColumn: ProductKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column OrderDateKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 89d0c04d-e9a5-4e8d-b49b-f441ba2428de
+				summarizeBy: count
+				sourceColumn: OrderDateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column DueDateKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 25ab757c-7087-4c37-8bc1-9e4d06a41c0b
+				summarizeBy: count
+				sourceColumn: DueDateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column ShipDateKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 5a83526e-bfd5-4709-9b9e-68cf5cf280e9
+				summarizeBy: count
+				sourceColumn: ShipDateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column CustomerKey
+				dataType: int64
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 3273642e-3357-420e-b037-8cb89c4f968b
+				summarizeBy: count
+				sourceColumn: CustomerKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column ResellerKey
+				dataType: int64
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: ecf2db55-04b7-4521-ae2a-017e0ef4a489
+				summarizeBy: count
+				sourceColumn: ResellerKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column EmployeeKey
+				dataType: int64
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 79e37306-d22c-43ae-9e19-30e4958f45b2
+				summarizeBy: count
+				sourceColumn: EmployeeKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column PromotionKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: bca06d68-e0d0-46fe-bc17-e1f9bf7a0858
+				summarizeBy: none
+				sourceColumn: PromotionKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column CurrencyKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: ec60a657-ad2c-4064-a5d7-c980d0638015
+				summarizeBy: count
+				sourceColumn: CurrencyKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column SalesTerritoryKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 6e1890d5-eeeb-44e0-b251-3557b520af78
+				summarizeBy: count
+				sourceColumn: SalesTerritoryKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column SalesOrderNumber
+				dataType: string
+				isNullable: false
+				sourceProviderType: nvarchar(20)
+				lineageTag: bcd3df4c-48d5-4b35-ac23-31a8b6d608b9
+				summarizeBy: none
+				sourceColumn: SalesOrderNumber
+
+				annotation SummarizationSetBy = Automatic
+
+			column OrderQuantity
+				dataType: int64
+				formatString: 0
+				sourceProviderType: smallint
+				lineageTag: a521e7ec-8154-480f-a554-1c0f68617c47
+				summarizeBy: sum
+				sourceColumn: OrderQuantity
+
+				annotation SummarizationSetBy = Automatic
+
+			column UnitPrice
+				dataType: decimal
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: cdf66a48-50c5-400b-90d9-57a4606dbdc0
+				summarizeBy: sum
+				sourceColumn: UnitPrice
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			column ExtendedAmount
+				dataType: decimal
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: f1ed570b-d2cd-436c-8cad-aca117a9d014
+				summarizeBy: sum
+				sourceColumn: ExtendedAmount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			column UnitPriceDiscountPct
+				dataType: double
+				sourceProviderType: float
+				lineageTag: 53df829e-99cd-4eb5-ae6e-1a465ba20577
+				summarizeBy: sum
+				sourceColumn: UnitPriceDiscountPct
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column DiscountAmount
+				dataType: double
+				sourceProviderType: float
+				lineageTag: 8a70c29d-26e2-47dc-a539-2c1e2966c0fa
+				summarizeBy: sum
+				sourceColumn: DiscountAmount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column ProductStandardCost
+				dataType: decimal
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: 42dff1e0-0e32-4e56-821f-5da6da466a73
+				summarizeBy: sum
+				sourceColumn: ProductStandardCost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			column TotalProductCost
+				dataType: decimal
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: 6665cf94-8b41-4682-9e9f-188b69eb32ef
+				summarizeBy: sum
+				sourceColumn: TotalProductCost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			column SalesAmount
+				dataType: decimal
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: fcd003a3-b086-4474-ace2-5d948da3064b
+				summarizeBy: sum
+				sourceColumn: SalesAmount
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			column TaxAmt
+				dataType: decimal
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: 6c95031a-153f-44f3-ae25-e59f096e5c45
+				summarizeBy: sum
+				sourceColumn: TaxAmt
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			column Freight
+				dataType: decimal
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: d6ac41e0-4a8a-4e91-b2b0-94586dfad7b6
+				summarizeBy: sum
+				sourceColumn: Freight
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			partition vw_FactSales = m
+				mode: Import
+				source =
+						let
+						    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+						    dbo_vw_FactSales = Origen{[Schema="dbo",Item="vw_FactSales"]}[Data]
+						in
+						    dbo_vw_FactSales
+
+			annotation PBI_ResultType = Table
+
+		table vw_FactSalesQuotas
+			lineageTag: 4b1511bf-5164-4b7e-9bc3-ff916a4070f9
+
+			column SalesQuotaKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 6b1cc763-465a-4f38-ab84-bc11bd45ce70
+				summarizeBy: count
+				sourceColumn: SalesQuotaKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column EmployeeKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 28fc2c97-db1e-4ce0-8d1d-495ddf9bad25
+				summarizeBy: count
+				sourceColumn: EmployeeKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column DateKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: fbe1dd22-ca42-458e-b44f-978231ab70b8
+				summarizeBy: count
+				sourceColumn: DateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column SalesAmountQuota
+				dataType: decimal
+				isNullable: false
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: d5b57d11-e17d-40e1-8b6d-bb52f47c87e4
+				summarizeBy: sum
+				sourceColumn: SalesAmountQuota
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			partition vw_FactSalesQuotas = m
+				mode: Import
+				source =
+						let
+						    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+						    dbo_vw_FactSalesQuotas = Origen{[Schema="dbo",Item="vw_FactSalesQuotas"]}[Data]
+						in
+						    dbo_vw_FactSalesQuotas
+
+			annotation PBI_ResultType = Table
+
+		table vw_FactStockProduct
+			lineageTag: e74dbe19-d8f6-4457-bb1c-d81cae6eaea4
+
+			column ProductKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: f4ecac21-f0ea-4981-bdfd-d15bb2de816a
+				summarizeBy: count
+				sourceColumn: ProductKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column DateKey
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 0159cd95-010d-4fdb-8b54-055682795458
+				summarizeBy: count
+				sourceColumn: DateKey
+
+				annotation SummarizationSetBy = Automatic
+
+			column UnitCost
+				dataType: decimal
+				isNullable: false
+				formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+				sourceProviderType: money
+				lineageTag: bf762edf-b243-4ed3-b3bf-fd581ffef62a
+				summarizeBy: sum
+				sourceColumn: UnitCost
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+			column UnitsIn
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: a406ada6-b923-41d2-8a83-bf487cc90a5d
+				summarizeBy: sum
+				sourceColumn: UnitsIn
+
+				annotation SummarizationSetBy = Automatic
+
+			column UnitsOut
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: f15199ed-b8bc-4d9e-b7fa-60d7aa8dccd3
+				summarizeBy: sum
+				sourceColumn: UnitsOut
+
+				annotation SummarizationSetBy = Automatic
+
+			column UnitsBalance
+				dataType: int64
+				isNullable: false
+				formatString: 0
+				sourceProviderType: int
+				lineageTag: 0feeaad1-7f17-434a-903f-39dc9dfabbdc
+				summarizeBy: sum
+				sourceColumn: UnitsBalance
+
+				annotation SummarizationSetBy = Automatic
+
+			partition vw_FactStockProduct = m
+				mode: Import
+				source =
+						let
+						    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+						    dbo_vw_FactStockProduct = Origen{[Schema="dbo",Item="vw_FactStockProduct"]}[Data]
+						in
+						    dbo_vw_FactStockProduct
+
+			annotation PBI_ResultType = Table
+
+		relationship 33fd016b-c550-53a7-c3ec-620ec678e899
+			fromColumn: vw_FactSales.PromotionKey
+			toColumn: vw_DimPromotion.PromotionKey
+
+		cultureInfo es-AR
+
+			linguisticMetadata = {"Version":"1.0.0","Language":"en-US"}
+				contentType: json
+
+		annotation PBI_QueryOrder = ["vw_DimGeography","vw_DimProduct","vw_DimCalendar","vw_DimCurrency","vw_DimPromotion","vw_DimReseller","vw_FactFinancial","vw_FactSales","vw_FactSalesQuotas","vw_FactStockProduct"]
+
+		annotation __PBI_TimeIntelligenceEnabled = 1
+
+		annotation PBIDesktopVersion = 2.145.1105.0 (25.07)+decbc46fce458c5b8d5109d6f32a743f2ac949c8
+
+		annotation PBI_ProTooling = ["TMDLView_Desktop"]
+

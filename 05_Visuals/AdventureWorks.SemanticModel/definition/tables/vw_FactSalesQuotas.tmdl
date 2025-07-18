@@ -1,0 +1,60 @@
+table vw_FactSalesQuotas
+	lineageTag: 4b1511bf-5164-4b7e-9bc3-ff916a4070f9
+
+	column SalesQuotaKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 6b1cc763-465a-4f38-ab84-bc11bd45ce70
+		summarizeBy: count
+		sourceColumn: SalesQuotaKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 28fc2c97-db1e-4ce0-8d1d-495ddf9bad25
+		summarizeBy: none
+		sourceColumn: EmployeeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: fbe1dd22-ca42-458e-b44f-978231ab70b8
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesAmountQuota
+		dataType: decimal
+		isNullable: false
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		sourceProviderType: money
+		lineageTag: d5b57d11-e17d-40e1-8b6d-bb52f47c87e4
+		summarizeBy: sum
+		sourceColumn: SalesAmountQuota
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-AR"}
+
+	partition vw_FactSalesQuotas = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+				    dbo_vw_FactSalesQuotas = Origen{[Schema="dbo",Item="vw_FactSalesQuotas"]}[Data]
+				in
+				    dbo_vw_FactSalesQuotas
+
+	annotation PBI_ResultType = Table
+

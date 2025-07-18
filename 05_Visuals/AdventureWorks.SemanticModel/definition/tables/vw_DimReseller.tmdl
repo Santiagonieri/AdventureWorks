@@ -1,0 +1,102 @@
+table vw_DimReseller
+	lineageTag: 91f5a0cc-546b-4f19-8960-123dc5fab304
+
+	column ResellerKey
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 57e43656-26f9-475f-8698-ab38fffe8a6a
+		summarizeBy: none
+		sourceColumn: ResellerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyKey
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 752e4a01-c591-40f1-a308-fe33a3731640
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column BusinessType
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(20)
+		lineageTag: aae1ed1d-d299-4177-80c8-1d2012acabc7
+		summarizeBy: none
+		sourceColumn: BusinessType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResellerName
+		dataType: string
+		sourceProviderType: nvarchar(51)
+		lineageTag: 87c96e88-25b7-432a-b903-f58cb53f185e
+		summarizeBy: none
+		sourceColumn: ResellerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstOrderYear
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f24b9130-d2ab-434a-8ef3-97eda41dec75
+		summarizeBy: sum
+		sourceColumn: FirstOrderYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastOrderYear
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: c64575a9-d53b-46f9-838d-60faf92abb17
+		summarizeBy: sum
+		sourceColumn: LastOrderYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductLine
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: b6223850-12d5-450f-ac77-57c36492f815
+		summarizeBy: none
+		sourceColumn: ProductLine
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderFrequency
+		dataType: string
+		sourceProviderType: char
+		lineageTag: 8020fc17-0b1a-4f2d-8a55-0d1206a8c405
+		summarizeBy: none
+		sourceColumn: OrderFrequency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: string
+		isNullable: false
+		sourceProviderType: varchar(6)
+		lineageTag: bc925a42-6585-4921-9236-098148f21013
+		summarizeBy: none
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_DimReseller = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+				    dbo_vw_DimReseller = Origen{[Schema="dbo",Item="vw_DimReseller"]}[Data]
+				in
+				    dbo_vw_DimReseller
+
+	annotation PBI_ResultType = Table
+

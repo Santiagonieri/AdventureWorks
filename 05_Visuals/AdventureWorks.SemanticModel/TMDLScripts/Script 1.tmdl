@@ -1,0 +1,201 @@
+createOrReplace
+
+	table vw_DimCalendar
+		lineageTag: ca4424fc-e196-46be-a5e3-9809c2c56bf4
+
+		column DateKey
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: int
+			lineageTag: e9f6bd2f-9013-414e-b9da-2def75506902
+			summarizeBy: count
+			sourceColumn: DateKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column Date
+			dataType: dateTime
+			isNullable: false
+			formatString: Long Date
+			sourceProviderType: date
+			lineageTag: 623424e2-c4ed-44fc-ba7a-939b124c5b65
+			summarizeBy: none
+			sourceColumn: Date
+
+			annotation SummarizationSetBy = Automatic
+
+			annotation UnderlyingDateTimeDataType = Date
+
+		column DayNumberOfWeek
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: tinyint
+			lineageTag: c7f67db5-d43e-40dc-8da0-436e86bf617c
+			summarizeBy: sum
+			sourceColumn: DayNumberOfWeek
+
+			annotation SummarizationSetBy = Automatic
+
+		column EnglishDayNameOfWeek
+			dataType: string
+			isNullable: false
+			sourceProviderType: nvarchar(10)
+			lineageTag: 231d4880-45f5-4849-acb1-0cf5e0803678
+			summarizeBy: none
+			sourceColumn: EnglishDayNameOfWeek
+
+			annotation SummarizationSetBy = Automatic
+
+		column SpanishDayNameOfWeek
+			dataType: string
+			isNullable: false
+			sourceProviderType: nvarchar(10)
+			lineageTag: 5fd1a45a-7a3c-4d26-8043-0545d6502244
+			summarizeBy: none
+			sourceColumn: SpanishDayNameOfWeek
+
+			annotation SummarizationSetBy = Automatic
+
+		column DayNumberOfMonth
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: tinyint
+			lineageTag: d90601c8-5fcb-4bf0-bc49-4ed66cf65694
+			summarizeBy: sum
+			sourceColumn: DayNumberOfMonth
+
+			annotation SummarizationSetBy = Automatic
+
+		column DayNumberOfYear
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: smallint
+			lineageTag: fc24b8b9-0af6-4165-ad42-bbae30234a86
+			summarizeBy: sum
+			sourceColumn: DayNumberOfYear
+
+			annotation SummarizationSetBy = Automatic
+
+		column WeekNumberOfYear
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: tinyint
+			lineageTag: 01a3e257-66a7-48ad-9782-e5b8fd516920
+			summarizeBy: sum
+			sourceColumn: WeekNumberOfYear
+
+			annotation SummarizationSetBy = Automatic
+
+		column EnglishMonthName
+			dataType: string
+			isNullable: false
+			sourceProviderType: nvarchar(10)
+			lineageTag: 0a47a833-841c-446e-a5a2-29a63c89465a
+			summarizeBy: none
+			sourceColumn: EnglishMonthName
+
+			annotation SummarizationSetBy = Automatic
+
+		column SpanishMonthName
+			dataType: string
+			isNullable: false
+			sourceProviderType: nvarchar(10)
+			lineageTag: 65db4753-b74e-40cc-9a76-798479df3a36
+			summarizeBy: none
+			sourceColumn: SpanishMonthName
+
+			annotation SummarizationSetBy = Automatic
+
+		column MonthNumberOfYear
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: tinyint
+			lineageTag: 69e48fd6-fdef-45da-bdef-8ad8a4ea145c
+			summarizeBy: sum
+			sourceColumn: MonthNumberOfYear
+
+			annotation SummarizationSetBy = Automatic
+
+		column CalendarQuarter
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: tinyint
+			lineageTag: 2f506c2a-5dda-4d91-93f4-ef554b43c4a8
+			summarizeBy: sum
+			sourceColumn: CalendarQuarter
+
+			annotation SummarizationSetBy = Automatic
+
+		column CalendarYear
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: smallint
+			lineageTag: 99ec2297-9ff2-4422-98a5-55e59b304d44
+			summarizeBy: sum
+			sourceColumn: CalendarYear
+
+			annotation SummarizationSetBy = Automatic
+
+		column CalendarSemester
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: tinyint
+			lineageTag: b110b736-5b30-4395-96e1-f928fd3797e2
+			summarizeBy: sum
+			sourceColumn: CalendarSemester
+
+			annotation SummarizationSetBy = Automatic
+
+		column FiscalQuarter
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: tinyint
+			lineageTag: 385d0cb9-e470-4f27-b731-5fde6b4f18fe
+			summarizeBy: sum
+			sourceColumn: FiscalQuarter
+
+			annotation SummarizationSetBy = Automatic
+
+		column FiscalYear
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: smallint
+			lineageTag: 47eac7d4-2b33-4a10-a777-538604cabf02
+			summarizeBy: sum
+			sourceColumn: FiscalYear
+
+			annotation SummarizationSetBy = Automatic
+
+		column FiscalSemester
+			dataType: int64
+			isNullable: false
+			formatString: 0
+			sourceProviderType: tinyint
+			lineageTag: 413e2991-df49-431f-9e72-3ce850cf0307
+			summarizeBy: sum
+			sourceColumn: FiscalSemester
+
+			annotation SummarizationSetBy = Automatic
+
+		partition vw_DimCalendar = m
+			mode: import
+			source =
+					let
+					    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+					    dbo_vw_DimCalendar = Origen{[Schema="dbo",Item="vw_DimCalendar"]}[Data]
+					in
+					    dbo_vw_DimCalendar
+
+		annotation PBI_ResultType = Table
+

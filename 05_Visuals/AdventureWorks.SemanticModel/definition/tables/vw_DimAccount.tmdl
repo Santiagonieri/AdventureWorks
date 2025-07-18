@@ -1,0 +1,84 @@
+table vw_DimAccount
+	lineageTag: 44c98c6a-3988-44b3-b866-3e72d7d38f88
+
+	column AccountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e5e9590-0846-4026-91bc-8dd54acab649
+		summarizeBy: none
+		sourceColumn: AccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentAccountKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e2f19d84-29f2-4563-8f68-ef3578f4ad8e
+		summarizeBy: none
+		sourceColumn: ParentAccountKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountCodeAlternateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e72448d-e7e1-4a09-9db3-81b4be304691
+		summarizeBy: none
+		sourceColumn: AccountCodeAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentAccountCodeAlternateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: db1339ed-b1a7-45b4-b7b1-664526fa8959
+		summarizeBy: none
+		sourceColumn: ParentAccountCodeAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountDescription
+		dataType: string
+		lineageTag: 768e06c0-3fb0-49e6-8b1d-b521e155a39a
+		summarizeBy: none
+		sourceColumn: AccountDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountType
+		dataType: string
+		lineageTag: 7a70813f-86f4-4599-9c09-f01b55de1592
+		summarizeBy: none
+		sourceColumn: AccountType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Operator
+		dataType: string
+		lineageTag: a8eb435c-edee-4484-a201-5ee7dd76b742
+		summarizeBy: none
+		sourceColumn: Operator
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValueType
+		dataType: string
+		lineageTag: 41b2ad51-7b1a-4834-ab26-462c78806ecb
+		summarizeBy: none
+		sourceColumn: ValueType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_DimAccount = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Database("SANTIAGO\MSSQLSERVER2022", "AdventureWorksDW2022"),
+				    dbo_vw_DimAccount = Origen{[Schema="dbo",Item="vw_DimAccount"]}[Data]
+				in
+				    dbo_vw_DimAccount
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
