@@ -1,0 +1,15 @@
+CREATE VIEW vw_DimPromotion AS
+
+SELECT  [PromotionKey]
+      ,[EnglishPromotionName]
+      ,[SpanishPromotionName]
+      ,[DiscountPct]
+      ,[EnglishPromotionType]
+      ,[SpanishPromotionType]
+      ,[EnglishPromotionCategory]
+      ,[SpanishPromotionCategory]
+      ,[StartDate]
+      ,[EndDate]
+      ,[MinQty]
+      ,[MaxQty]
+  FROM [AdventureWorksDW2022].[dbo].[stg_Promotion]
